@@ -8,6 +8,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { Suspense } from "react";
 
 const Login = lazy(() => import("./pages/auth/Login"));
+const Register = lazy(() => import("./pages/auth/Registar"));
 
 
 const App = () => {
@@ -51,6 +52,8 @@ const App = () => {
         >
             <Switch>
                 <Route exact path='/' component={Login} />
+                <Route exact path='/register' component={Register} />
+
             </Switch>
         </Suspense>
     )
