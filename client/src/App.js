@@ -9,6 +9,8 @@ import { Suspense } from "react";
 
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Registar"));
+const CompleteRegisterion = lazy(() => import("./pages/auth/RegistarComplete"));
+
 
 
 const App = () => {
@@ -53,6 +55,7 @@ const App = () => {
             <Switch>
                 <Route exact path='/' component={Login} />
                 <Route exact path='/register' component={Register} />
+                <Route exact path='/register/complete' component={CompleteRegisterion} />
 
             </Switch>
         </Suspense>
