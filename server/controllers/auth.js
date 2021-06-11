@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const ToDoList = require("../models/toDoList");
 
 exports.createOrUpdateUser = async (req, res) => {
     const { name, picture, email } = req.user;
@@ -29,14 +30,14 @@ exports.currentUser = async (req, res) => {
 
 // addToComplete complete removeFromComplete
 exports.addToComplete = async (req, res) => {
-    const { toDoListId } = req.body;
+    // const { toDoListId } = req.body;
+    const toDoList = await ToDoList.findOne(req.params.toDoListId);
 
     const user = await User.findOneAndUpdate(
         { email: req.user.email },
-        { $addToSet: { complete: toDoListId } }
+        { $addToSet: { complete: toDoList } }
     ).exec();
-
-    res.json({ ok: true }, user);
+    res.json({ ok: true });
 };
 
 exports.complete = async (req, res) => {
@@ -49,11 +50,12 @@ exports.complete = async (req, res) => {
 };
 
 exports.removeFromComplete = async (req, res) => {
-    const { toDoListId } = req.params;
+    const toDoList = await ToDoList.findOne(req.params.toDoListId);
+
     const user = await User.findOneAndUpdate(
         { email: req.user.email },
-        { $pull: { complete: toDoListId } }
+        { $pull: { complete: toDoList } }
     ).exec();
 
-    res.json({ ok: true }, user);
+    res.json({ ok: true });
 };

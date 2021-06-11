@@ -7,7 +7,7 @@ export const getToDoList = async (slug) =>
     await axios.get(`${process.env.REACT_APP_API}/home/${slug}`);
 
 export const removeToDoList = async (slug, authtoken) =>
-    await axios.delete(`${process.env.REACT_APP_API}/home.${slug}`, {
+    await axios.delete(`${process.env.REACT_APP_API}/home/${slug}`, {
         headers: {
             authtoken,
         },

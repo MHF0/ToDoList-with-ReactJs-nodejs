@@ -13,6 +13,7 @@ import { Suspense } from "react";
 const CompleteRegisterion = lazy(() => import("./pages/auth/RegistarComplete"));
 const ForgetPassword = lazy(() => import("./pages/auth/ForgetPassword"));
 const ToDoListUpdate = lazy(() => import("./ToDoList/ToDoListUpdate"));
+const Complete = lazy(() => import("./pages/auth/Complete"));
 const Register = lazy(() => import("./pages/auth/Registar"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Footer = lazy(() => import("./nav/Footer"));
@@ -61,6 +62,7 @@ const App = () => {
                 <Route exact path='/' component={Login} />
                 <Route exact path='/home' component={Home} />
                 <Route exact path='/register' component={Register} />
+                <Route exact path='/home/complete' component={Complete} />
                 <Route exact path='/forgetPassword' component={ForgetPassword} />
                 <Route exact path='/toDoList/:slug' component={ToDoListUpdate} />
                 <Route exact path='/register/complete' component={CompleteRegisterion} />

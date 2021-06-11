@@ -17,6 +17,6 @@ router.post("/home", authCheck, create);
 router.get("/home", list);
 router.get("/home/:slug", read);
 router.put("/home/:slug", authCheck, update);
-router.delete("home//:slug", authCheck, remove);
+router.delete("/home/:slug", authCheck, remove);
 
 module.exports = router;

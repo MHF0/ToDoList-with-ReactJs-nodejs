@@ -6,8 +6,8 @@ const AdminNav = () => (
         <ul className="nav flex-column">
 
             <li className="nav-item">
-                <Link to="/admin/sub" className="nav-link">
-                    Complete taskes
+                <Link to="/home/complete" className="nav-link">
+                    Complete tasks
                 </Link>
             </li>
 

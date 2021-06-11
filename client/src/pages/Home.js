@@ -6,45 +6,23 @@ import {
     getToDoLists,
     removeToDoList,
 } from "../functions/toDoList";
+import { addToComplete } from '../functions/auth';
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import ToDoListForm from "../ToDoList/ToDoListForm";
 import ToDoListSearch from "../ToDoList/ToDoListSearch";
 import Header from '../nav/Header';
 import { Link } from "react-router-dom";
 import UserNav from "../nav/UserNav"
+import { Checkbox } from 'antd';
 
 
 const ToDoListCreate = () => {
 
-    const colors = [
-        {
-            primaryColor: "#5D93E1",
-            secondaryColor: "#ECF3FC"
-        },
-        {
-            primaryColor: "#F9D288",
-            secondaryColor: "#FEFAF1"
-        },
-        {
-            primaryColor: "#5DC250",
-            secondaryColor: "#F2FAF1"
-        },
-        {
-            primaryColor: "#F48687",
-            secondaryColor: "#FDF1F1"
-        },
-        {
-            primaryColor: "#B964F7",
-            secondaryColor: "#F3F0FD"
-        }
-    ]
-    
     const { user } = useSelector((state) => ({ ...state }));
 
     const [name, setName] = useState("");
     const [loading, setLoading] = useState(false);
     const [toDoLists, setToDoLists] = useState([]);
-    // step 1
     const [keyword, setKeyword] = useState("");
 
     useEffect(() => {
@@ -90,7 +68,13 @@ const ToDoListCreate = () => {
         }
     };
 
-    // step 4
+    const handelAddToComplete = (e) => {
+        e.preventDefault();
+        addToComplete(toDoLists._id, user.token).then((res) => {
+            toast.success(`Add To Completed`);
+        })
+    }
+
     const searched = (keyword) => (t) => t.name.toLowerCase().includes(keyword);
 
     return (
@@ -105,7 +89,7 @@ const ToDoListCreate = () => {
                         {loading ? (
                             <h4 className="text-danger">Loading..</h4>
                         ) : (
-                            <h4 className='container'>All Taske</h4>
+                            <h4 className='container'>All Tasks</h4>
                         )}
 
                         <ToDoListForm
@@ -133,6 +117,10 @@ const ToDoListCreate = () => {
                                             <EditOutlined className="text-warning" />
                                         </span>
                                     </Link>
+
+                                    <Checkbox autoFocus onChange={handelAddToComplete} className='btn btn-sm float-right' disabled={onchange}>
+                                        
+                                    </Checkbox>
                                 </div>
                             </div>
                         ))}
