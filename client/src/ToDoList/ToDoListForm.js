@@ -2,7 +2,7 @@ import React from "react";
 
 const ToDoListForm = ({ handleSubmit, name, setName }) => (
     <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="form-group container">
             <input
                 type="text"
                 className="form-control"

@@ -27,7 +27,7 @@ const ToDoListUpdate = ({ history, match }) => {
                 setLoading(false);
                 setName("");
                 toast.success(`"${res.data.name}" is updated`);
-                history.push("/");
+                history.push("/home");
             })
             .catch((err) => {
                 console.log(err);

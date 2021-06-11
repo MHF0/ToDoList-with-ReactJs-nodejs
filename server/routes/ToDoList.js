@@ -13,10 +13,10 @@ const {
     list,
 } = require("../controllers/toDoList");
 
-router.post("/", authCheck, create);
-router.get("/", list);
-router.get("/:slug", read);
-router.put("/:slug", authCheck, update);
-router.delete("/:slug", authCheck, remove);
+router.post("/home", authCheck, create);
+router.get("/home", list);
+router.get("/home/:slug", read);
+router.put("/home/:slug", authCheck, update);
+router.delete("home//:slug", authCheck, remove);
 
 module.exports = router;

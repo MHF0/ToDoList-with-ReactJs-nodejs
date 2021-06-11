@@ -7,13 +7,15 @@ const ToDoListSerach = ({ keyword, setKeyword }) => {
     };
 
     return (
-        <input
-            type="search"
-            placeholder="Filter"
-            value={keyword}
-            onChange={handleSearchChange}
-            className="form-control mb-4"
-        />
+        <div className='container'>
+            <input
+                type="search"
+                placeholder="Filter"
+                value={keyword}
+                onChange={handleSearchChange}
+                className="form-control mb-4"
+            />
+        </div>
     );
 };
 

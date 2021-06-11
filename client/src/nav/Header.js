@@ -65,13 +65,6 @@ const Header = () => {
             )}
             {user && (
                 <div>
-                    <div className='text-header'>
-                        <Link to='/'>
-                            <h3>
-                                ToDoList
-                            </h3>
-                        </Link>
-                    </div>
                     <Item icon={<LogoutOutlined />} onClick={logout} className='float-right logout'>
                         Logout
                     </Item>

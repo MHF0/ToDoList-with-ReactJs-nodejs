@@ -11,9 +11,34 @@ import ToDoListForm from "../ToDoList/ToDoListForm";
 import ToDoListSearch from "../ToDoList/ToDoListSearch";
 import Header from '../nav/Header';
 import { Link } from "react-router-dom";
+import UserNav from "../nav/UserNav"
 
 
 const ToDoListCreate = () => {
+
+    const colors = [
+        {
+            primaryColor: "#5D93E1",
+            secondaryColor: "#ECF3FC"
+        },
+        {
+            primaryColor: "#F9D288",
+            secondaryColor: "#FEFAF1"
+        },
+        {
+            primaryColor: "#5DC250",
+            secondaryColor: "#F2FAF1"
+        },
+        {
+            primaryColor: "#F48687",
+            secondaryColor: "#FDF1F1"
+        },
+        {
+            primaryColor: "#B964F7",
+            secondaryColor: "#F3F0FD"
+        }
+    ]
+    
     const { user } = useSelector((state) => ({ ...state }));
 
     const [name, setName] = useState("");
@@ -53,7 +78,7 @@ const ToDoListCreate = () => {
             removeToDoList(slug, user.token)
                 .then((res) => {
                     setLoading(false);
-                    toast.error(`${res.data.name} was deleted`);
+                    toast.error(`${res.data.name} deleted`);
                     loadToDoList();
                 })
                 .catch((err) => {
@@ -73,40 +98,44 @@ const ToDoListCreate = () => {
             <Header />
             <div className="container-fluid">
                 <div className="row">
-                    <div className="container">
+                    <div className="col-md-2">
+                        <UserNav />
+                    </div>
+                    <div className="col">
+                        {loading ? (
+                            <h4 className="text-danger">Loading..</h4>
+                        ) : (
+                            <h4 className='container'>All Taske</h4>
+                        )}
 
-                        <div className="col">
-                            {loading ? (
-                                <h4 className="text-danger">Loading..</h4>
-                            ) : (
-                                <h4>Your To Do</h4>
-                            )}
+                        <ToDoListForm
+                            handleSubmit={handleSubmit}
+                            name={name}
+                            setName={setName}
+                        />
 
-                            <ToDoListForm
-                                handleSubmit={handleSubmit}
-                                name={name}
-                                setName={setName}
-                            />
+                        {/* step 2 and step 3 */}
+                        <ToDoListSearch keyword={keyword} setKeyword={setKeyword} />
 
-                            <ToDoListSearch keyword={keyword} setKeyword={setKeyword} />
-
-                            {toDoLists.filter(searched(keyword)).map((t) => (
+                        {/* step 5 */}
+                        {toDoLists.filter(searched(keyword)).map((t) => (
+                            <div className='container'>
                                 <div className="alert alert-secondary" key={t._id}>
-                                    {t.name}
+                                    <b>{t.name}</b>
                                     <span
                                         onClick={() => handleRemove(t.slug)}
                                         className="btn btn-sm float-right"
                                     >
                                         <DeleteOutlined className="text-danger" />
                                     </span>
-                                    <Link to={`/toDoList/${t.slug}`}>
+                                    <Link to={`/home/${t.slug}`}>
                                         <span className="btn btn-sm float-right">
                                             <EditOutlined className="text-warning" />
                                         </span>
                                     </Link>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
