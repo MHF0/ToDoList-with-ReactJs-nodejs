@@ -53,7 +53,7 @@ const ToDoListCreate = () => {
             removeToDoList(slug, user.token)
                 .then((res) => {
                     setLoading(false);
-                    toast.error(`${res.data.name} deleted`);
+                    toast.error(`${res.data.name} was deleted`);
                     loadToDoList();
                 })
                 .catch((err) => {
@@ -79,7 +79,7 @@ const ToDoListCreate = () => {
                             {loading ? (
                                 <h4 className="text-danger">Loading..</h4>
                             ) : (
-                                <h4>To Do List</h4>
+                                <h4>Your To Do</h4>
                             )}
 
                             <ToDoListForm
@@ -88,10 +88,8 @@ const ToDoListCreate = () => {
                                 setName={setName}
                             />
 
-                            {/* step 2 and step 3 */}
                             <ToDoListSearch keyword={keyword} setKeyword={setKeyword} />
 
-                            {/* step 5 */}
                             {toDoLists.filter(searched(keyword)).map((t) => (
                                 <div className="alert alert-secondary" key={t._id}>
                                     {t.name}

@@ -5,17 +5,18 @@ import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { currentUser } from "./functions/auth";
 import { LoadingOutlined } from "@ant-design/icons";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Suspense } from "react";
 
-const Login = lazy(() => import("./pages/auth/Login"));
-const Register = lazy(() => import("./pages/auth/Registar"));
+// file import
 const CompleteRegisterion = lazy(() => import("./pages/auth/RegistarComplete"));
 const ForgetPassword = lazy(() => import("./pages/auth/ForgetPassword"));
-const Home = lazy(() => import("./pages/Home"));
 const ToDoListUpdate = lazy(() => import("./ToDoList/ToDoListUpdate"));
-
-
-
+const Register = lazy(() => import("./pages/auth/Registar"));
+const Login = lazy(() => import("./pages/auth/Login"));
+const Footer = lazy(() => import("./nav/Footer"));
+const Home = lazy(() => import("./pages/Home"));
 
 const App = () => {
     const dispatch = useDispatch();
@@ -34,7 +35,6 @@ const App = () => {
                                 name: res.data.name,
                                 email: res.data.email,
                                 token: idTokenResult.token,
-                                role: res.data.role,
                                 _id: res.data._id,
                             },
                         });
@@ -56,16 +56,18 @@ const App = () => {
             </div>
             }
         >
+            <ToastContainer />
             <Switch>
-                <Route exact path='/login' component={Login} />
-                <Route exact path='/' component={Home} />
+                <Route exact path='/' component={Login} />
+                <Route exact path='/home' component={Home} />
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/forgetPassword' component={ForgetPassword} />
-                <Route exact path='/register/complete' component={CompleteRegisterion} />
                 <Route exact path='/toDoList/:slug' component={ToDoListUpdate} />
+                <Route exact path='/register/complete' component={CompleteRegisterion} />
             </Switch>
+            <Footer/>
         </Suspense>
-    )
-}
+    );
+};
 
 export default App;

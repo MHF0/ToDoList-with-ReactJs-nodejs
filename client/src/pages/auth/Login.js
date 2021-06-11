@@ -20,7 +20,7 @@ const Login = ({ history }) => {
         if (intended) {
             return;
         } else {
-            if (user && user.token) history.push("/");
+            if (user && user.token) history.push("/home");
         }
     }, [user, history]);
 
@@ -32,7 +32,7 @@ const Login = ({ history }) => {
         if (intended) {
             history.push(intended.from);
         } else {
-            history.push("/");
+            history.push("/home");
         }
     };
 
@@ -52,7 +52,6 @@ const Login = ({ history }) => {
                             name: res.data.name,
                             email: res.data.email,
                             token: idTokenResult.token,
-                            role: res.data.role,
                             _id: res.data._id,
                         },
                     });
@@ -81,7 +80,6 @@ const Login = ({ history }) => {
                                 name: res.data.name,
                                 email: res.data.email,
                                 token: idTokenResult.token,
-                                role: res.data.role,
                                 _id: res.data._id,
                             },
                         });
@@ -109,7 +107,6 @@ const Login = ({ history }) => {
                                 name: res.data.name,
                                 email: res.data.email,
                                 token: idTokenResult.token,
-                                role: res.data.role,
                                 _id: res.data._id,
                             },
                         });
@@ -185,7 +182,7 @@ const Login = ({ history }) => {
                             size="large"
                         >
                             Login with Google
-          </Button>
+                        </Button>
                         <br />
                         <Button
                             onClick={facebookLogin}
@@ -197,15 +194,15 @@ const Login = ({ history }) => {
                             size="large"
                         >
                             Login with Facebook
-          </Button>
+                         </Button>
 
                         <Link to="/forgot/password" className="float-right text-danger">
                             Forget password?
-          </Link>
+                         </Link>
 
                         <Link to="/register" className="float-left text-danger">
                             Don't have account?
-          </Link>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import firebase from "firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-// import './en.css'
+import './nav.css'
 
 const { SubMenu, Item } = Menu;
 
@@ -34,29 +34,48 @@ const Header = () => {
     };
 
     return (
-        <Menu onClick={handleClick} selectedKeys={[current]} mode='vertical' className='nav-color navBar'>
+        <Menu onClick={handleClick} selectedKeys={[current]} mode='vertical' className='nav-color h-45'>
+            <div className='text-header'>
+                <h3>
+                    <b>ToDoList</b>
 
+                </h3>
+            </div>
             {!user && (
                 <Item
                     key="login"
-                    className="nav-text-icon float-left hover userName"
+                    className="userName float-left"
                     style={{ width: '150px' }} icon={<UserOutlined />}>
-                    <Link to="/login"><b className="nav-text-icon">Login</b></Link>
+                    <Link to="/"><b className="login">Login</b></Link>
                 </Item>
             )}
             {user && (
                 <SubMenu
-                    title={user.name && user.name}
-                    className="nav-text-icon float-left hover navPostion userName"
+                    title={`Hello, ${user.name && user.name}`}
+                    className="float-left userName"
                 >
                     <Item>
                         <Link to="/forgetPassword">Change Password</Link>
                     </Item>
 
-                    <Item icon={<LogoutOutlined />} onClick={logout}>
+                    <Item icon={<LogoutOutlined style={{ color: 'white', fontSize: '20px' }} />} onClick={logout}>
                         Logout
-          </Item>
+                    </Item>
                 </SubMenu>
+            )}
+            {user && (
+                <div>
+                    <div className='text-header'>
+                        <Link to='/'>
+                            <h3>
+                                ToDoList
+                            </h3>
+                        </Link>
+                    </div>
+                    <Item icon={<LogoutOutlined />} onClick={logout} className='float-right logout'>
+                        Logout
+                    </Item>
+                </div>
             )}
         </Menu>
     );

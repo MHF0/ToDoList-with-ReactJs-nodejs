@@ -59,7 +59,7 @@ const ForgotPassword = ({ history }) => {
                     <br />
                     <button className="btn btn-raised" disabled={!email}>
                         Submit
-        </button>
+                    </button>
                 </form>
             </div>
         </>

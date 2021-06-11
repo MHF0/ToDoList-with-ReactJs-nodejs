@@ -33,11 +33,11 @@ exports.update = async (req, res) => {
     }
 };
 
-exports.remove = async (req, res)=>{
+exports.remove = async (req, res) => {
     try {
-        const deleted = await ToDoList.findByIdAndDelete({ slug: req.params.slug });
+        const deleted = await ToDoList.findOneAndDelete({ slug: req.params.slug });
         res.json(deleted);
     } catch (err) {
         res.status(400).send("ToDoList delete failed");
     }
-}
+};

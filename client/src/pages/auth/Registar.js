@@ -15,7 +15,7 @@ const Register = ({ history }) => {
     let dispatch = useDispatch();
 
     useEffect(() => {
-        if (user && user.token) history.push("/");
+        if (user && user.token) history.push("/home");
     }, [user, history]);
 
     const handleSubmit = async (e) => {
@@ -41,7 +41,7 @@ const Register = ({ history }) => {
         if (intended) {
             history.push(intended.from);
         } else {
-            history.push('/');
+            history.push('/home');
         }
     };
 
@@ -59,7 +59,6 @@ const Register = ({ history }) => {
                                 name: res.data.name,
                                 email: res.data.email,
                                 token: idTokenResult.token,
-                                role: res.data.role,
                                 _id: res.data._id,
                             },
                         });
@@ -87,7 +86,6 @@ const Register = ({ history }) => {
                                 name: res.data.name,
                                 email: res.data.email,
                                 token: idTokenResult.token,
-                                role: res.data.role,
                                 _id: res.data._id,
                             },
                         });

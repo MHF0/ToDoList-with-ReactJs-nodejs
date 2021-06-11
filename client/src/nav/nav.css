@@ -1,0 +1,38 @@
+.text-header h3 {
+    position: relative;
+    color: #dee0e6;
+    text-align: center;
+    font-size: 25px;
+    height: 15px;
+    top: 20px;
+}
+
+.nav-color {
+    background-color: #134e6f;
+}
+
+.userName {
+    color: #dee0e6;
+    position: relative;
+    font-size: 20px;
+    bottom: 20px;
+}
+
+.login {
+    color: #dee0e6;
+    position: relative;
+    font-size: 20px;
+}
+
+.logout {
+    color: #dee0e6;
+    position: relative;
+    font-size: 20px;
+    bottom: 20px;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

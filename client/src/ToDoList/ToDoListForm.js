@@ -3,10 +3,10 @@ import React from "react";
 const ToDoListForm = ({ handleSubmit, name, setName }) => (
     <form onSubmit={handleSubmit}>
         <div className="form-group">
-            <label>Name</label>
             <input
                 type="text"
                 className="form-control"
+                placeholder="Write here"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
                 autoFocus
