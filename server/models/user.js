@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema;
 
 const userSchema = new mongoose.Schema(
     {
@@ -7,6 +8,8 @@ const userSchema = new mongoose.Schema(
             type: String,
             index: true,
         },
+
+        complete: [{ type: ObjectId, ref: "toDoList"}]
     },
     { timestamps: true }
 );
