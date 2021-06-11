@@ -30,7 +30,7 @@ const Header = () => {
             type: "LOGOUT",
             payload: null,
         });
-        history.push("/login");
+        history.push("/");
     };
 
     return (
@@ -49,11 +49,9 @@ const Header = () => {
                     title={user.name && user.name}
                     className="nav-text-icon float-left hover navPostion userName"
                 >
-                    {user && user.role === "subscriber" && (
-                        <Item>
-                            <Link to="/user/history">Change Password</Link>
-                        </Item>
-                    )}
+                    <Item>
+                        <Link to="/forgetPassword">Change Password</Link>
+                    </Item>
 
                     <Item icon={<LogoutOutlined />} onClick={logout}>
                         Logout

@@ -15,7 +15,7 @@ const Register = ({ history }) => {
     let dispatch = useDispatch();
 
     useEffect(() => {
-        if (user && user.token) history.push("/home");
+        if (user && user.token) history.push("/");
     }, [user, history]);
 
     const handleSubmit = async (e) => {
@@ -41,7 +41,7 @@ const Register = ({ history }) => {
         if (intended) {
             history.push(intended.from);
         } else {
-            history.push('/home');
+            history.push('/');
         }
     };
 

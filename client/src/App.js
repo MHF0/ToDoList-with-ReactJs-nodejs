@@ -10,7 +10,10 @@ import { Suspense } from "react";
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Registar"));
 const CompleteRegisterion = lazy(() => import("./pages/auth/RegistarComplete"));
-const ForgetPassword = lazy(() => import("./pages/auth//ForgetPassword"));
+const ForgetPassword = lazy(() => import("./pages/auth/ForgetPassword"));
+const Home = lazy(() => import("./pages/Home"));
+const ToDoListUpdate = lazy(() => import("./ToDoList/ToDoListUpdate"));
+
 
 
 
@@ -54,12 +57,12 @@ const App = () => {
             }
         >
             <Switch>
-                <Route exact path='/' component={Login} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/' component={Home} />
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/forgetPassword' component={ForgetPassword} />
                 <Route exact path='/register/complete' component={CompleteRegisterion} />
-
-
+                <Route exact path='/toDoList/:slug' component={ToDoListUpdate} />
             </Switch>
         </Suspense>
     )
