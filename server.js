@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const { readdirSync } = require("fs");
 require("dotenv").config();
+const path = require('path');
 
 // app
 const app = express();
@@ -21,6 +22,7 @@ mongoose
     .catch((err) => console.log("DB CONNECTION ERR", err));
 
 // middlewares
+app.use(express.static(path.join(__dirname, "client/build")));
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "2mb" }));
 app.use(cors());
