@@ -19,7 +19,7 @@ const ForgotPassword = ({ history }) => {
         setLoading(true);
 
         const config = {
-            url: process.env.REACT_APP_FORGOT_PASSWORD_REDIRECT,
+            url: "https://todolist-farhan.herokuapp.com/login",
             handleCodeInApp: true,
         };
 

@@ -12,7 +12,7 @@ const app = express();
 
 // db
 mongoose
-    .connect(process.env.URI, {
+    .connect("mongodb+srv://555444:555444@cluster0.9jqdu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
