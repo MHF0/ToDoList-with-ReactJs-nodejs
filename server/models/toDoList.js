@@ -13,7 +13,7 @@ const toDoListSchema = new mongoose.Schema(
             index: true,
         },
     },
-    {timestamps: true}
+    { timestamps: true }
 );
 
 module.exports = mongoose.model("ToDoList", toDoListSchema);

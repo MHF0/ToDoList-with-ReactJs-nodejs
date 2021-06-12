@@ -20,8 +20,8 @@ const Complete = () => {
             setComplete(res.data.complete);
         });
 
-    const handleRemove = (toDoList) =>
-        removeComplete(toDoList, user.token).then((res) => {
+    const handleRemove = (toDoListId) =>
+        removeComplete(toDoListId, user.token).then((res) => {
             toast.warn("Removed")
             loadComplete();
         });
@@ -31,23 +31,23 @@ const Complete = () => {
             <Header />
             <div className="container-fluid">
                 <div className="row">
+                    <div className="col-sm-0 mt-4">
+                        <UserNav />
+                    </div>
                     <div className="col mt-4">
                         <h4>Your Complete</h4>
 
                         {complete.map((c) => (
                             <div key={c._id} className="alert alert-secondary">
-                                <b>{c.title}</b>
+                                <b>{console.log(c.title)}</b>
                                 <span
                                     onClick={() => handleRemove(c._id)}
-                                    className="btn btn-sm float-left"
+                                    className="btn btn-sm float-right"
                                 >
-                                    <DeleteOutlined className="text-danger float-left" />
+                                    <DeleteOutlined className="text-danger float-right" />
                                 </span>
                             </div>
                         ))}
-                    </div>
-                    <div className="col-sm-0 mt-4">
-                        <UserNav />
                     </div>
                 </div>
             </div>

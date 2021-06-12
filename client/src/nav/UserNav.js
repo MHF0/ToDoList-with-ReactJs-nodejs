@@ -4,13 +4,6 @@ import { Link } from "react-router-dom";
 const AdminNav = () => (
     <nav>
         <ul className="nav flex-column">
-
-            <li className="nav-item">
-                <Link to="/home/complete" className="nav-link">
-                    Complete tasks
-                </Link>
-            </li>
-
             <li className="nav-item">
                 <Link to="/forgetPassword" className="nav-link">
                    Change Password

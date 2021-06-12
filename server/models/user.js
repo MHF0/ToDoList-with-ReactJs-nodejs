@@ -8,8 +8,6 @@ const userSchema = new mongoose.Schema(
             type: String,
             index: true,
         },
-
-        complete: [{ type: ObjectId, ref: "toDoList"}]
     },
     { timestamps: true }
 );

@@ -44,7 +44,7 @@ const Header = () => {
             {!user && (
                 <Item
                     key="login"
-                    className="userName float-left"
+                    className="userName float-left container"
                     style={{ width: '150px' }} icon={<UserOutlined />}>
                     <Link to="/"><b className="login">Login</b></Link>
                 </Item>
