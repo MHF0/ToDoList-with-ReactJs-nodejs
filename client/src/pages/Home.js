@@ -11,6 +11,7 @@ import ToDoListForm from "../ToDoList/ToDoListForm";
 import ToDoListSearch from "../ToDoList/ToDoListSearch";
 import Header from '../nav/Header';
 import { Link } from "react-router-dom";
+import './Home.css'
 
 const ToDoListCreate = () => {
 
@@ -69,44 +70,46 @@ const ToDoListCreate = () => {
             <Header />
             <div className="container-fluid">
                 <div className="row">
-                    <div className="col-md-2" />
-                    <div className="col">
-                        {loading ? (
-                            <h4 className="text-danger">Loading..</h4>
-                        ) : (
-                            <h4 className='container'>All Tasks</h4>
-                        )}
+                    {/* <div className="col-md-2" /> */}
+                    <div className='container'>
+                        <div className="col">
+                            {loading ? (
+                                <h4 className="text-danger">Loading..</h4>
+                            ) : (
+                                <h4 className='allTasks'>All Tasks</h4>
+                            )}
 
-                        <ToDoListForm
-                            handleSubmit={handleSubmit}
-                            name={name}
-                            setName={setName}
-                        />
+                            <ToDoListForm
+                                handleSubmit={handleSubmit}
+                                name={name}
+                                setName={setName}
+                            />
 
-                        {/* step 2 and step 3 */}
-                        <ToDoListSearch keyword={keyword} setKeyword={setKeyword} />
+                            {/* step 2 and step 3 */}
+                            <ToDoListSearch keyword={keyword} setKeyword={setKeyword} />
 
-                        {/* step 5 */}
-                        {toDoLists.filter(searched(keyword)).map((t) => (
-                            <div className='container'>
-                                <div className="alert alert-secondary" key={t._id}>
-                                    <b>{t.name}</b>
-                                    <span
-                                        onClick={() => handleRemove(t.slug)}
-                                        className="btn btn-sm float-right"
-                                    >
-                                        <DeleteOutlined className="text-danger" />
-                                    </span>
-                                    <Link to={`/home/${t.slug}`}>
-                                        <span className="btn btn-sm float-right">
-                                            <EditOutlined className="text-warning" />
+                            {/* step 5 */}
+                            {toDoLists.filter(searched(keyword)).map((t) => (
+                                <div className='container'>
+                                    <div className="alert alert-secondary" key={t._id}>
+                                        <b>{t.name}</b>
+                                        <span
+                                            onClick={() => handleRemove(t.slug)}
+                                            className="btn btn-sm float-right"
+                                        >
+                                            <DeleteOutlined className="text-danger" />
                                         </span>
-                                    </Link>
+                                        <Link to={`/home/${t.slug}`}>
+                                            <span className="btn btn-sm float-right">
+                                                <EditOutlined className="text-warning" />
+                                            </span>
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                        {/* <div className="col-md-2" /> */}
                     </div>
-                    <div className="col-md-2" />
                 </div>
             </div>
         </>

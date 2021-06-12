@@ -35,41 +35,43 @@ const Header = () => {
 
     return (
         <Menu onClick={handleClick} selectedKeys={[current]} mode='vertical' className='nav-color h-45'>
-            <div className='text-header'>
-                <h3>
-                    <b>ToDoList</b>
+            <div className='container'>
+                <div className='text-header'>
+                    <h3>
+                        <b>ToDoList</b>
 
-                </h3>
-            </div>
-            {!user && (
-                <Item
-                    key="login"
-                    className="userName float-left container"
-                    style={{ width: '150px' }} icon={<UserOutlined />}>
-                    <Link to="/"><b className="login">Login</b></Link>
-                </Item>
-            )}
-            {user && (
-                <SubMenu
-                    title={`Hello, ${user.name && user.name}`}
-                    className="float-left userName"
-                >
-                    <Item>
-                        <Link to="/forgetPassword">Change Password</Link>
-                    </Item>
-
-                    <Item icon={<LogoutOutlined style={{ color: 'white', fontSize: '20px' }} />} onClick={logout}>
-                        Logout
-                    </Item>
-                </SubMenu>
-            )}
-            {user && (
-                <div>
-                    <Item icon={<LogoutOutlined />} onClick={logout} className='float-right logout'>
-                        Logout
-                    </Item>
+                    </h3>
                 </div>
-            )}
+                {!user && (
+                    <Item
+                        key="login"
+                        className="userName float-left"
+                        style={{ width: '150px' }} icon={<UserOutlined />}>
+                        <Link to="/"><b className="login">Login</b></Link>
+                    </Item>
+                )}
+                {user && (
+                    <SubMenu
+                        title={`Hello, ${user.name && user.name}`}
+                        className="float-left userName"
+                    >
+                        <Item>
+                            <Link to="/forgetPassword">Change Password</Link>
+                        </Item>
+
+                        <Item icon={<LogoutOutlined style={{ color: 'white', fontSize: '20px' }} />} onClick={logout}>
+                            Logout
+                    </Item>
+                    </SubMenu>
+                )}
+                {user && (
+                    <div>
+                        <Item icon={<LogoutOutlined />} onClick={logout} className='float-right logout'>
+                            Logout
+                    </Item>
+                    </div>
+                )}
+            </div>
         </Menu>
     );
 };
