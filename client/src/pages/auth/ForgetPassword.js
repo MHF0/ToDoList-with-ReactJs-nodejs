@@ -19,7 +19,7 @@ const ForgotPassword = ({ history }) => {
         setLoading(true);
 
         const config = {
-            url: "https://todolist-farhan.herokuapp.com/login",
+            url: "https://todolist-farhan.herokuapp.com",
             handleCodeInApp: true,
         };
 
