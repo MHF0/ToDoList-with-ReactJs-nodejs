@@ -23,3 +23,43 @@ export const currentUser = async (authtoken) => {
         }
     );
 };
+
+export const addToComplete = async (toDoListId, authtoken) =>
+    await axios.post(
+        `${process.env.REACT_APP_API}/complete`,
+        { toDoListId },
+        {
+            headers: {
+                authtoken,
+            },
+        }
+    );
+
+export const getComplete = async (authtoken) =>
+    await axios.get(`${process.env.REACT_APP_API}/completed`, {
+        headers: {
+            authtoken,
+        },
+    });
+
+export const removeComplete = async (toDoListId, authtoken) =>
+    await axios.put(
+        `${process.env.REACT_APP_API}/complete/${toDoListId}`,
+        {},
+        {
+            headers: {
+                authtoken,
+            },
+        }
+    );
+
+export const removeFromHome = async (toDoListId, authtoken) =>
+    await axios.put(
+        `${process.env.REACT_APP_API}/remove/${toDoListId}`,
+        {},
+        {
+            headers: {
+                authtoken,
+            },
+        }
+    );

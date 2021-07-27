@@ -27,3 +27,42 @@ exports.currentUser = async (req, res) => {
         res.json(user);
     });
 };
+
+exports.addComplete = async (req, res) => {
+    const { toDoListId } = req.body;
+
+    const user = await User.findOneAndUpdate(
+        { email: req.user.email },
+        { $addToSet: { complete: toDoListId } }
+    ).exec();
+    res.json({ ok: true });
+};
+
+exports.complete = async (req, res) => {
+    const list = await User.findOne({ email: req.user.email })
+        .select("complete")
+        .populate("complete")
+        .exec();
+
+    res.json(list);
+};
+
+exports.removeFromComplete = async (req, res) => {
+    const { toDoListId } = req.params;
+    const user = await User.findOneAndUpdate(
+        { email: req.user.email },
+        { $pull: { complete: toDoListId } }
+    ).exec();
+
+    res.json({ ok: true });
+};
+
+exports.removeFromHome = async (req, res) => {
+    const { toDoListId } = req.params;
+    const user = await ToDoList.findOneAndUpdate(
+        { email: req.user.email },
+        { $pull: { toDoList: toDoListId } }
+    ).exec();
+
+    res.json({ ok: true });
+};

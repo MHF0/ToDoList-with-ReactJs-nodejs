@@ -56,7 +56,13 @@ const Header = () => {
                         className="float-left userName"
                     >
                         <Item>
+                            <Link to="/home">Home</Link>
+                        </Item>
+                        <Item>
                             <Link to="/forgetPassword">Change Password</Link>
+                        </Item>
+                        <Item>
+                            <Link to="/complete">Your Completes</Link>
                         </Item>
 
                         <Item icon={<LogoutOutlined style={{ color: 'white', fontSize: '20px' }} />} onClick={logout}>

@@ -13,7 +13,9 @@ import { Suspense } from "react";
 const CompleteRegisterion = lazy(() => import("./pages/auth/RegistarComplete"));
 const ForgetPassword = lazy(() => import("./pages/auth/ForgetPassword"));
 const ToDoListUpdate = lazy(() => import("./ToDoList/ToDoListUpdate"));
+const Complete = lazy(() => import("./pages/Complete"));
 const Register = lazy(() => import("./pages/auth/Registar"));
+const UserRoute = lazy(() => import("./routes/UserRoute"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const Footer = lazy(() => import("./nav/Footer"));
 const Home = lazy(() => import("./pages/Home"));
@@ -51,21 +53,22 @@ const App = () => {
             fallback={
                 <div className='col text-center p-5'>
                     __To D
-          <LoadingOutlined />
-            List__
-            </div>
+                    <LoadingOutlined />
+                    List__
+                </div>
             }
         >
             <ToastContainer />
             <Switch>
                 <Route exact path='/' component={Login} />
-                <Route exact path='/home' component={Home} />
                 <Route exact path='/register' component={Register} />
-                <Route exact path='/forgetPassword' component={ForgetPassword} />
-                <Route exact path='/toDoList/:slug' component={ToDoListUpdate} />
-                <Route exact path='/register/complete' component={CompleteRegisterion} />
+                <UserRoute exact path='/home' component={Home} />
+                <UserRoute exact path='/forgetPassword' component={ForgetPassword} />
+                <UserRoute exact path='/toDoList/:slug' component={ToDoListUpdate} />
+                <UserRoute exact path='/register/complete' component={CompleteRegisterion} />
+                <UserRoute exact path='/complete' component={Complete} />
             </Switch>
-            <Footer/>
+            <Footer />
         </Suspense>
     );
 };

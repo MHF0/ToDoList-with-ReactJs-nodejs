@@ -6,14 +6,15 @@ import {
     getToDoLists,
     removeToDoList,
 } from "../functions/toDoList";
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { addToComplete, removeFromHome } from "../functions/auth";
+import { EditOutlined, DeleteOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import ToDoListForm from "../ToDoList/ToDoListForm";
 import ToDoListSearch from "../ToDoList/ToDoListSearch";
 import Header from '../nav/Header';
 import { Link } from "react-router-dom";
 import './Home.css'
 
-const ToDoListCreate = () => {
+const ToDoListCreate = (complete) => {
 
     const { user } = useSelector((state) => ({ ...state }));
 
@@ -24,10 +25,12 @@ const ToDoListCreate = () => {
 
     useEffect(() => {
         loadToDoList();
+        // eslint-disable-next-line
+
     }, []);
 
     const loadToDoList = () =>
-        getToDoLists().then((t) => setToDoLists(t.data));
+        getToDoLists(user.token).then((res) => setToDoLists(res.data));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -62,6 +65,17 @@ const ToDoListCreate = () => {
                 }
             });
     };
+
+    const handleAddComplete = (toDoListId) => {
+        // eslint-disable-next-line 
+        // addToComplete(toDoListId, user.token).then((res) => {
+        //     toast.success("Add to Complete"); 
+        // });
+        removeFromHome(toDoListId, user.token).then((res) => {
+            loadToDoList();
+        });
+    };
+
 
     const searched = (keyword) => (t) => t.name.toLowerCase().includes(keyword);
 
@@ -99,16 +113,22 @@ const ToDoListCreate = () => {
                                         >
                                             <DeleteOutlined className="text-danger" />
                                         </span>
-                                        <Link to={`/home/${t.slug}`}>
-                                            <span className="btn btn-sm float-right">
+
+                                        <span className="btn btn-sm float-right">
+                                            <Link to={`/home/${t.slug}`}>
                                                 <EditOutlined className="text-warning" />
+                                            </Link>
+                                        </span>
+                                        <spa className="btn btn-sm float-right">
+                                            <span onClick={() => handleAddComplete(t._id)}>
+                                                <CheckCircleOutlined className="text-info" /> <br />
                                             </span>
-                                        </Link>
+                                        </spa>
+
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        {/* <div className="col-md-2" /> */}
                     </div>
                 </div>
             </div>
